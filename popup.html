@@ -11,7 +11,7 @@
       }
 
       #container {
-        width: 300px; /* Adjusted width */
+        width: 300px;
         margin: 20px auto;
         padding: 20px;
         background-color: #fff;
@@ -30,6 +30,11 @@
         margin-bottom: 5px;
       }
 
+      p {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
       input[type="number"] {
         width: 100%;
         padding: 8px;
@@ -40,7 +45,8 @@
       }
 
       button[type="submit"] {
-        padding: 10px 20px;
+        width: 100%;
+        padding: 10px;
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -58,15 +64,41 @@
         background-color: #f9f9f9;
         border: 1px solid #ccc;
         border-radius: 4px;
-        font-weight: bolder;
+        font-weight: bold;
         font-size: larger;
+      }
+
+      .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 150px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 0%;
+        left: 200px;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
       }
 
       .radio-group {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px;
-        border: 1px solid #ccc; /* Light gray border */
+        margin-bottom: 20px;
       }
 
       .radio-group label {
@@ -78,34 +110,6 @@
         width: auto;
         margin-right: 5px;
       }
-
-      .tooltip {
-        position: relative;
-        display: inline-block;
-        cursor: help;
-      }
-
-      .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 200px;
-        max-width: calc(100vw - 20px); /* Constrain tooltip to screen width */
-        background-color: #555;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 100%; /* Align tooltip above the input field */
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-      }
     </style>
   </head>
   <body>
@@ -113,17 +117,15 @@
       <h2>hrTSS Fudge Factor</h2>
       <form id="workoutForm">
         <div class="tooltip">
-          <label for="hrtss"
-            >hrTss
-            <span class="tooltiptext">Tooltip text for hrTss</span></label
-          >
+          <label for="hrtss">hrTss</label>
+          <span class="tooltiptext">hrTSS value from Training Peaks</span>
         </div>
         <input type="number" id="hrtss" name="hrtss" required /><br /><br />
 
         <div class="tooltip">
-          <label for="vertical"
-            >Vertical (ft):
-            <span class="tooltiptext">Tooltip text for Vertical</span></label
+          <label for="vertical">Vertical (ft):</label>
+          <span class="tooltiptext"
+            >Adds 10 TSS for every 1000 ft of vertical</span
           >
         </div>
         <input
@@ -134,29 +136,27 @@
         /><br /><br />
 
         <div class="tooltip">
-          <label for="weight"
-            >Weight (% of bodyweight):
-            <span class="tooltiptext">Tooltip text for Weight</span></label
+          <label for="weight">Weight (% of bodyweight):</label>
+          <span class="tooltiptext"
+            >Adds 1 TSS for every 1% of bodyweight carried up 1000 ft</span
           >
         </div>
+        <input type="number" id="weight" name="weight" required /><br />
 
-        <input type="number" id="weight" name="weight" required /><br /><br />
+        <div class="tooltip">
+          <p>Location:</p>
+          <span class="tooltiptext">Half the vertical for indoor workouts</span>
+        </div>
 
-        <fieldset class="radio-group">
-          <legend>
-            <div class="tooltip">
-              <div>Location:</div>
-              <span class="tooltiptext">Tooltip text for Location</span>
-            </div>
-          </legend>
-          <label>
-            <input type="radio" name="location" value="outdoor" checked />
-            Outdoor
-          </label>
-          <label>
-            <input type="radio" name="location" value="indoor" /> Indoor
-          </label>
-        </fieldset>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="location" value="outdoor" checked />
+            Outdoor</label
+          >
+          <label
+            ><input type="radio" name="location" value="indoor" /> Indoor</label
+          >
+        </div>
 
         <button type="submit">Submit</button>
       </form>
