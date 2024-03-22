@@ -128,11 +128,32 @@
             >Adds 10 TSS for every 1000 ft of vertical</span
           >
         </div>
+        <input type="number" id="vertical" name="vertical" /><br /><br />
+
+        <div class="tooltip">
+          <label for="distance">Distance (miles):</label>
+        </div>
         <input
           type="number"
-          id="vertical"
-          name="vertical"
-          required
+          min="0"
+          max="1000"
+          step="0.01"
+          id="distance"
+          name="distance"
+        /><br /><br />
+
+        <div class="tooltip">
+          <label for="grade">Percent Grade:</label>
+          <span class="tooltiptext"
+            >Average grade in %, of the distance covered</span
+          >
+        </div>
+        <input
+          type="number"
+          min="0"
+          step="0.1"
+          id="grade"
+          name="grade"
         /><br /><br />
 
         <div class="tooltip">
