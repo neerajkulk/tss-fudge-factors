@@ -44,8 +44,7 @@ function calculateVertical(vertical, distance, grade) {
   }
 
   alert(
-    ```Please provide the vertical in ft OR the distance and grade.
-    If you provide the vertical, the distance and grade will be ignored for the calculation.```
+    "Please provide the vertical in ft OR the distance and grade. If you provide the vertical, the distance and grade will be ignored for the calculation."
   );
 }
 
